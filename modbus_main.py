@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Settings of Sensor Device
 meter = sdm_modbus.SDM230(
-    device='COM5',
+    device='/dev/ttyUSB0',
     stopbits=1,
     parity='N',
     baud=2400,
@@ -20,7 +20,7 @@ def start_script():
     try:
         # Enter here your mysql credentials
         db = mysql.connector.connect(
-            host ="127.0.0.1",
+            host ="localhost",
             user ="root",
             password="",
             database = "messwerte",
