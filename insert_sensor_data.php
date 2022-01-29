@@ -1,12 +1,12 @@
 <?php
 
-if(isset($_GET["temperature"])) {
-   $temperature = $_GET["temperature"]; // get temperature value from HTTP GET
+if(isset($_GET["drehzahl"])) {
+   $drehzahl = $_GET["drehzahl"]; // get temperature value from HTTP GET
 
    $servername = "localhost";
-   $username = "ESP32";
-   $password = "esp32io.com";
-   $database_name = "db_esp32";
+   $username = "root";
+   $password = "";
+   $database_name = "messwerte";
 
    // Create MySQL connection fom PHP to MySQL server
    $connection = new mysqli($servername, $username, $password, $database_name);
@@ -15,7 +15,7 @@ if(isset($_GET["temperature"])) {
       die("MySQL connection failed: " . $connection->connect_error);
    }
 
-   $sql = "INSERT INTO tbl_temp (temp_value) VALUES ($temperature)";
+   $sql = "INSERT INTO sdm230 (drehzahl) VALUES ($drehzahl)";
 
    if ($connection->query($sql) === TRUE) {
       echo "New record created successfully";
@@ -25,7 +25,7 @@ if(isset($_GET["temperature"])) {
 
    $connection->close();
 } else {
-   echo "temperature is not set in the HTTP request";
+   echo "drehzahl is not set in the HTTP request";
 }
 ?>
 
