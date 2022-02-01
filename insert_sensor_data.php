@@ -15,7 +15,7 @@ if(isset($_GET["drehzahl"])) {
       die("MySQL connection failed: " . $connection->connect_error);
    }
 
-   $sql = "INSERT INTO sdm230 (drehzahl) VALUES ($drehzahl)";
+   $sql = "INSERT INTO esp32 (drehzahl) VALUES ($drehzahl)";
 
    if ($connection->query($sql) === TRUE) {
       echo "New record created successfully";
