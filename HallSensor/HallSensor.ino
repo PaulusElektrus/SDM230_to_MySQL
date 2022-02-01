@@ -8,12 +8,18 @@ String HOST_NAME = "http://29.11.97.165"; // change to your PC's IP address
 String PATH_NAME   = "/insert_sensor_data.php";
 String queryString = "";
 
-int drehzahl = 0;
-volatile int Wellendrehung = 0;
-float Timestamp = 0;
+volatile unsigned int counts = 0;
+unsigned int rpm = 0; //unsigned gives only positive values
+unsigned long previoustime = 0;
+
+void IRAM_ATTR count_function ()
+{
+counts++;
+}
 
 void setup() {
   Serial.begin(9600); 
+  pinMode(34, INPUT);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.println("Connecting");
@@ -24,28 +30,20 @@ void setup() {
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
-
-  attachInterrupt(34, functionCount, HIGH);
-}
-
-void functionCount() {
-  Wellendrehung++;
+  
+  attachInterrupt(34, count_function, RISING);
 }
   
 void loop() {
-   if ( millis()-Timestamp > 1000) // Wenn tausend Millisekunden vorüber...
-  {
-     noInterrupts();
-     drehzahl = Wellendrehung*60;
-     Wellendrehung = 0;
-     Timestamp = millis();
-     
-     queryString = "?drehzahl=" + drehzahl;
+     delay(1000);//Update RPM every second
+     detachInterrupt(34); //Interrupts are disabled
+     rpm = 60*1000/(millis() - previoustime)*counts;
+      
+     queryString = "?drehzahl=" + rpm;
   
      HTTPClient http;
      http.begin(HOST_NAME + PATH_NAME + queryString); //HTTP
      int httpCode = http.GET();
-
       // httpCode will be negative on error
       if(httpCode > 0) {
         // file found at server
@@ -59,8 +57,11 @@ void loop() {
       } else {
         Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
       }
-    
       http.end();
-      interrupts();
-  }
+
+      counts= 0; //Resets the counter
+      Serial.println("RPM = ");
+      Serial.println(rpm); //Calculated values are displayed
+      previoustime = millis(); //Resets the clock
+      attachInterrupt(34, count_function, RISING); //Counter restarted
 }

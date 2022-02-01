@@ -12,7 +12,7 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-# This line is for the Eastron SDM230 Device
+# This line is for the ESP32 drehzahl Device
 cursor.execute("CREATE TABLE esp32 (`ID` INT AUTO_INCREMENT PRIMARY KEY,`Datum` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`drehzahl` FLOAT(5,1))")
 
 # Other devices will follow...
