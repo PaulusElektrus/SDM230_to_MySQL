@@ -24,11 +24,11 @@ void setup() {
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
-}
-  attachInterrupt(34, functionCount, HIGH);
 
-void functionCount()
-{
+  attachInterrupt(34, functionCount, HIGH);
+}
+
+void functionCount() {
   Wellendrehung++;
 }
   
@@ -36,7 +36,7 @@ void loop() {
    if ( millis()-Timestamp > 1000) // Wenn tausend Millisekunden vorüber...
   {
      noInterrupts();
-     drehzahl = Wellendrehung*60
+     drehzahl = Wellendrehung*60;
      Wellendrehung = 0;
      Timestamp = millis();
      
@@ -63,3 +63,4 @@ void loop() {
       http.end();
       interrupts();
   }
+}
