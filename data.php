@@ -1,8 +1,8 @@
 <?php
 
 if(isset($_GET["drehzahl"])) {
-   $drehzahl = $_GET["drehzahl"]; // get temperature value from HTTP GET
-
+   $drehzahl = $_GET["drehzahl"]; // get drehzahl value from HTTP GET
+   
    $servername = "localhost";
    $username = "root";
    $password = "";

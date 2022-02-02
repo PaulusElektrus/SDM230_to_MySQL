@@ -5,11 +5,12 @@ const char WIFI_SSID[] = "";
 const char WIFI_PASSWORD[] = "";
 
 String HOST_NAME = "http://29.11.97.165"; // change to your PC's IP address
-String PATH_NAME   = "/insert_sensor_data.php";
+String PATH_NAME   = "/data.php";
 String queryString = "";
+String php = "";
 
 volatile unsigned int counts = 0;
-unsigned int rpm = 0; //unsigned gives only positive values
+unsigned long rpm = 0; //unsigned gives only positive values
 unsigned long previoustime = 0;
 
 void IRAM_ATTR count_function ()
@@ -38,9 +39,11 @@ void loop() {
      delay(1000);//Update RPM every second
      detachInterrupt(34); //Interrupts are disabled
      rpm = 60*1000/(millis() - previoustime)*counts;
-      
-     queryString = "?drehzahl=" + rpm;
-  
+     
+     rpm = 1234;
+     php = String(rpm);
+     queryString = "?drehzahl=" + php;
+     
      HTTPClient http;
      http.begin(HOST_NAME + PATH_NAME + queryString); //HTTP
      int httpCode = http.GET();
