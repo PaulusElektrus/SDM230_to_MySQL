@@ -18,7 +18,7 @@ if __name__ == "__main__":
     argparser.add_argument("--json", action="store_true", default=False, help="Output as JSON")
     args = argparser.parse_args()
 
-    meter = sdm_modbus.SDM230(
+    meter = sdm_modbus.SDM630(
         device=args.device,
         stopbits=args.stopbits,
         parity=args.parity,
