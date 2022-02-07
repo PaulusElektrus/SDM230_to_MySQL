@@ -4,7 +4,7 @@
 const char WIFI_SSID[] = "";
 const char WIFI_PASSWORD[] = "";
 
-String HOST_NAME = "http://29.11.97.165"; // change to your PC's IP address
+String HOST_NAME = "http://"; // change to your PC's IP address
 String PATH_NAME   = "/data.php";
 String queryString = "";
 String php = "";
@@ -25,7 +25,7 @@ void setup() {
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.println("Connecting");
   while(WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(500); 
     Serial.print(".");
   }
   Serial.println("");

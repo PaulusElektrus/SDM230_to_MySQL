@@ -1,7 +1,11 @@
 <?php
 
 if(isset($_GET["drehzahl"])) {
+   isset($_GET["flowRate"]);
+   isset($_GET["total"]);
    $drehzahl = $_GET["drehzahl"]; // get drehzahl value from HTTP GET
+   $flowRate = $_GET["flowRate"];
+   $total = $_GET["total"];
    
    $servername = "localhost";
    $username = "root";
@@ -15,7 +19,7 @@ if(isset($_GET["drehzahl"])) {
       die("MySQL connection failed: " . $connection->connect_error);
    }
 
-   $sql = "INSERT INTO esp32 (ID,Datum,drehzahl) VALUES (ID,UTC_TIMESTAMP(),$drehzahl)";
+   $sql = "INSERT INTO esp32 (ID,Datum,drehzahl,flowRate,total) VALUES (ID,UTC_TIMESTAMP(),$drehzahl,$flowRate,$total)";
 
    if ($connection->query($sql) === TRUE) {
       echo "New record created successfully";
