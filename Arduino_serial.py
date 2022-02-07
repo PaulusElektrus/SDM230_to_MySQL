@@ -36,3 +36,5 @@ def handle_crash():
     print("Ein Fehler ist aufgetreten, erneuter Versuch in 5 Sekunden.")
     time.sleep(5)
     start_script()
+
+start_script()
