@@ -1,14 +1,31 @@
 import serial
+import mysql.connector
 import time
- 
-s = serial.Serial('/dev/ttyUSB0', 9600) # Namen ggf. anpassen
-s.open()
-time.sleep(5) # der Arduino resettet nach einer Seriellen Verbindung, daher muss kurz gewartet werden
- 
-s.write("test")
+from datetime import datetime
+
+db = mysql.connector.connect(
+            host ="localhost",
+            user ="root",
+            password="",
+            database = "messwerte",
+            )
+
+cursor = db.cursor() 
+sqlStatement = ("INSERT INTO esp32 (ID,Datum,drehzahl,flowRate,total) VALUES (ID,UTC_TIMESTAMP(),%s,%s,%s)")
+
+arduinoData=serial.Serial('COM8',9600)
+
 try:
     while True:
-        response = s.readline()
-        print(response)
+        arduinoString=arduinoData.readline()
+        dataArray=arduinoString.split(b',')
+        rpm = float(dataArray[0])
+        flowRate = float(dataArray[1])
+        total = float(dataArray[2])
+        data = tuple([rpm, flowRate, total])
+        cursor.execute(sqlStatement, data)
+        db.commit()
+        print("Service running! Timestamp: " + str(datetime.now()))
+           
 except KeyboardInterrupt:
-    s.close()
+    arduinoData.close()

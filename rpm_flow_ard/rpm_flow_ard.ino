@@ -13,8 +13,8 @@ float flowRate;
 float tmp;
 float rpm;
 
-unsigned int flowMilliLitres;
-unsigned long totalMilliLitres;
+float flowMilliLitres;
+float totalMilliLitres;
 
 unsigned long oldTime;
 
@@ -64,7 +64,7 @@ void loop()
     // that to scale the output. We also apply the calibrationFactor to scale the output
     // based on the number of pulses per second per units of measure (litres/minute in
     // this case) coming from the sensor.
-    tmp = (1000.0 / (millis() - oldTime)) * pulseCount;
+    tmp = (1000.0 / (millis() - oldTime)) * waterCount;
     rpm = (1000.0 / (millis() - oldTime)) * pulseCount*60;
 
     // As we have a add operation we need to avoid the positive value when no pulse is found
@@ -83,7 +83,7 @@ void loop()
     // Divide the flow rate in litres/minute by 60 to determine how many litres have
     // passed through the sensor in this 1 second interval, then multiply by 1000 to
     // convert to millilitres.
-    flowMilliLitres = (flowRate / 60) * 1000;
+    flowMilliLitres = (flowRate / 60);
     
     // Add the millilitres passed in this second to the cumulative total
     totalMilliLitres += flowMilliLitres;
@@ -109,13 +109,13 @@ void loop()
 //    Serial.print("\t");        // Print tab space
 //    Serial.print(totalMilliLitres/1000);
 //    Serial.println("L");
-    Serial.print("Main: ");
-    Serial.println(pulseCount);
-    Serial.print("RPM: ");
-    Serial.println(rpm);
 
-    Serial.print("Water: ");
-    Serial.println(waterCount);
+    Serial.print(rpm);
+    Serial.print(" , ");
+    Serial.print(flowRate);
+    Serial.print(" , ");
+    Serial.print(totalMilliLitres);
+    Serial.print("\n");
 
     // Reset the pulse counter so we can start incrementing again
     pulseCount = 0;
@@ -134,14 +134,10 @@ void pulseCounter()
 {
   // Increment the pulse counter
   pulseCount++;
-  Serial.print("Interrupt: ");
-  Serial.println(pulseCount);
 }
 
 void waterCounter()
 {
   // Increment the pulse counter
   waterCount++;
-  Serial.print("Interrupt: ");
-  Serial.println(waterCount);
 }
