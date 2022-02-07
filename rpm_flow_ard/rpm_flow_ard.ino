@@ -87,8 +87,7 @@ void loop()
     
     // Add the millilitres passed in this second to the cumulative total
     totalMilliLitres += flowMilliLitres;
-      
-    unsigned int frac;
+     
     
     // Print the flow rate for this second in litres / minute
 

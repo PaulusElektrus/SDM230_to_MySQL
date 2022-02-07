@@ -25,7 +25,7 @@ meter = sdm_modbus.SDM630(
             
 def start_script():
     # This function connects to the database and starts the data acquisition
-    #try:
+    try:
         # Enter here your mysql credentials
         db = mysql.connector.connect(
             host ="localhost",      #put in IP-adress of raspi
@@ -43,7 +43,7 @@ def start_script():
         while True:
             read_data(db, cursor, sqlStatement)
 
-    #except:
+    except:
         handle_crash()
 
 def read_data(db, cursor, sqlStatement):
