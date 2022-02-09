@@ -39,7 +39,7 @@ def start_script():
                         (`ID`,`Datum`,`Voltage_L1N`,`Voltage_L2N`,`Voltage_L3N`,`Current_L1`,`Current_L2`,`Current_L3`,
                         `Power_L1`,`Power_L2`,`Power_L3`,`Frequency`,`Total_kWh`,`Total_kVarh`,
                         `Power_factor_L1`,`Power_factor_L2`,`Power_factor_L3`,`Phase_angle_L1`,`Phase_angle_L2`,`Phase_angle_L3`)
-                        VALUES (ID,UTC_TIMESTAMP(),%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,)""")
+                        VALUES (ID,UTC_TIMESTAMP(),%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""")
         while True:
             read_data(db, cursor, sqlStatement)
 
