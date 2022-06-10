@@ -13,4 +13,4 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 # This line is for the Eastron SDM230 Device
-cursor.execute("CREATE TABLE wirkungsgrad (`ID` INT AUTO_INCREMENT PRIMARY KEY,`Datum` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`Wirkungsgrad` FLOAT(5,2)")
+cursor.execute("CREATE TABLE wirkungsgrad (`ID` INT AUTO_INCREMENT PRIMARY KEY,`Datum` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`Wirkungsgrad` FLOAT(5,2))")
