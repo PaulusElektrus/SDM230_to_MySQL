@@ -1,3 +1,5 @@
+# TUM DESL Project with ESP32 for drehzahl acquisition
+# Readme NOT Up to date!
 # EASTRON_Modbus_Visualization_with_Grafana
 
 Generally to install the software you need these packages and software:

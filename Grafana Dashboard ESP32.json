@@ -1,0 +1,2293 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_MYSQL",
+      "label": "MySQL",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mysql",
+      "pluginName": "MySQL"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.3.4"
+    },
+    {
+      "type": "datasource",
+      "id": "mysql",
+      "name": "MySQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 60,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "rotrpm"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 1
+          },
+          "id": 58,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": true,
+            "showThresholdMarkers": false
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  drehzahl\nFROM esp32\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "drehzahl"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "esp32",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Drehzahl",
+          "type": "gauge"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "rotrpm"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 1
+          },
+          "id": 56,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  drehzahl\nFROM esp32\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "drehzahl"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "esp32",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Drehzahl",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Drehzahl",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 48,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 2
+          },
+          "id": 54,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^Maximum_Import_Demand_Power_Active$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Maximum_Import_Demand_Power_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Maximum_Import_Demand_Power_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Maximum Demand Active Power",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 2
+          },
+          "id": 52,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^Maximum_Export_Demand_Power_Active$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Maximum_Export_Demand_Power_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Maximum_Export_Demand_Power_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Maximum Exported Active Power",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 10
+          },
+          "id": 36,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Import_Demand_Power_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Import_Demand_Power_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Demand Active Power",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 10
+          },
+          "id": 42,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Export_Demand_Power_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Export_Demand_Power_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Exported Active Power",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 3,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 18
+          },
+          "id": 38,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Imported_Energy_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Imported_Energy_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Demand Active Energy",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 18
+          },
+          "id": 44,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Exported_Energy_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Exported_Energy_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Exported Active Energy",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "varh"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 26
+          },
+          "id": 40,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Imported_Energy_Reactive\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Imported_Energy_Reactive"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Demand Reactive Energy",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "varh"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 26
+          },
+          "id": 46,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Exported_Energy_Reactive\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Exported_Energy_Reactive"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Exported Reactive Energy",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Imported & Exported Power",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 30,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "decimals": 3,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "amp"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 3
+          },
+          "id": 28,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "/^Current$/",
+              "values": false
+            },
+            "showThresholdLabels": true,
+            "showThresholdMarkers": false
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Current\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Current"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Current",
+          "type": "gauge"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "volt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 3
+          },
+          "id": 26,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "/^Voltage$/",
+              "values": false
+            },
+            "showThresholdLabels": true,
+            "showThresholdMarkers": false
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Voltage\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Voltage"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Voltage",
+          "type": "gauge"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "id": 34,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "/^Power_Active$/",
+              "values": false
+            },
+            "showThresholdLabels": true,
+            "showThresholdMarkers": false
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Power_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Power_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Active Power",
+          "type": "gauge"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 3,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watth"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "id": 32,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^Total_Energy_Active$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Total_Energy_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Total_Energy_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Total Active Energy",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 19
+          },
+          "id": 50,
+          "options": {
+            "colorMode": "none",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^ID$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  ID\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ID"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Anzahl Datenpunkte",
+          "type": "stat"
+        }
+      ],
+      "title": "Gauge",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 22,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "volt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 4
+          },
+          "id": 2,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Voltage\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Voltage"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Voltage",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 3,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "amp"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 4
+          },
+          "id": 8,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Current\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Current"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Current",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Voltage & Current",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 18,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "watt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 5
+          },
+          "id": 12,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Power_Active\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Power_Active"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Active Power",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "voltampreact"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 5
+          },
+          "id": 14,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Power_Reactive\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Power_Reactive"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Reactive Power",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 1,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "voltamp"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 13
+          },
+          "id": 16,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Power_Apparent\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Power_Apparent"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Apparent Power",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "PF"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 13
+          },
+          "id": 24,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Power_Factor\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Power_Factor"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Power Factor",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Power",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 20,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 3,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "rothz"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 15
+          },
+          "id": 6,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Frequency\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Frequency"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Frequency",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "degree"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 15
+          },
+          "id": 10,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "mysql",
+                "uid": "${DS_MYSQL}"
+              },
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": false,
+              "rawSql": "SELECT\n  Datum AS \"time\",\n  Phase_Angle\nFROM sdm230\nORDER BY Datum",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Phase_Angle"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "sdm230",
+              "timeColumn": "Datum",
+              "timeColumnType": "timestamp",
+              "where": []
+            }
+          ],
+          "title": "Phase Angle",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Frequency & Phase Angle",
+      "type": "row"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 34,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Dashboard",
+  "uid": "lFELSzbnk",
+  "version": 3,
+  "weekStart": ""
+}
