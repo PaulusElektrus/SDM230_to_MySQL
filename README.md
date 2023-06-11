@@ -1,4 +1,4 @@
-# TUM DESL Project with ESP32 for drehzahl acquisition
+# TUM DESL Project
 # Readme NOT Up to date!
 # EASTRON_Modbus_Visualization_with_Grafana
 
